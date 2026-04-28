@@ -6,7 +6,7 @@ import json
 app = FastAPI(title="Cloud Native Task Platform")
 
 r = redis.Redis(
-    host="localhost",
+    host="redis",
     port=6379,
     decode_responses=True
 )
