@@ -8,7 +8,7 @@ r = redis.Redis(
     decode_responses=True
 )
 
-print("Worker started...")
+print("Worker started...",flush=True)
 
 while True:
 

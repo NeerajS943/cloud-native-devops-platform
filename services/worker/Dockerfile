@@ -8,4 +8,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY services/worker/ worker/
 
-CMD ["python", "worker/worker.py"]
+CMD ["python","-u", "worker/worker.py"]
