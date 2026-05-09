@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: task-api
-
+  namespace: task-platform
 spec:
   replicas: 1
 
@@ -18,11 +18,50 @@ spec:
     spec:
       containers:
       - name: task-api
-        image: task-api:1.0
+        image: task-api:2.0
         imagePullPolicy: Never
+
+        env:
+        - name: REDIS_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: task-config
+              key: REDIS_HOST
+
+        - name: REDIS_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: task-config
+              key: REDIS_PORT
 
         ports:
         - containerPort: 8000
+
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
 
 ---
 apiVersion: v1

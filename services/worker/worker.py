@@ -1,10 +1,11 @@
+import os
 import redis
 import json
 import time
 
 r = redis.Redis(
-    host="redis",
-    port=6379,
+    host = os.getenv("REDIS_HOST", "localhost"),
+    port = int(os.getenv("REDIS_PORT", 6379)),
     decode_responses=True
 )
 
