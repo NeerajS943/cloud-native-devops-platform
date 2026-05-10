@@ -20,7 +20,7 @@ spec:
       containers:
       - name: task-worker
         image: neerajs231/task-worker:latest
-        imagePullPolicy: Never
+        imagePullPolicy: Always
         resources:
           requests:
             cpu: "100m"

@@ -19,7 +19,7 @@ spec:
       containers:
       - name: task-api
         image: neerajs231/task-api:latest
-        imagePullPolicy: Never
+        imagePullPolicy: Always
 
         env:
         - name: REDIS_HOST
