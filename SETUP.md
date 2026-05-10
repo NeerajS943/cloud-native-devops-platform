@@ -40,6 +40,8 @@ kubectl get svc
 # Access app
 kubectl port-forward service/task-api 8000:8000
 
+kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller 8080:80
+
 # View logs
 kubectl logs deployment/task-api
 kubectl logs deployment/task-worker
