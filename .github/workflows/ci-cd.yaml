@@ -38,21 +38,24 @@ jobs:
       run: |
         docker push ${{ secrets.DOCKER_USERNAME }}/task-worker:${{ github.sha }}
 
-    # deploy:
-    #   needs: build
-    #   runs-on: ubuntu-latest
+  deploy:
+    needs: build
+    runs-on: self-hosted
 
-    #   steps:
-    #   - name: Setup kubeconfig
-    #     run: |
-    #       mkdir -p $HOME/.kube
-    #       echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
+    steps:
+    - name: Setup kubeconfig
+      run: |
+        mkdir -p $HOME/.kube
+        echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
+    
+    - name: Verify Cluster Access
+      run: kubectl get nodes
 
-    #   - name: Deploy API
-    #     run: |
-    #       kubectl apply -f k8s/
-    #       kubectl set image deployment/task-api task-api=${{ secrets.DOCKER_USERNAME }}/task-api:${{ github.sha }}
+    # - name: Deploy API
+    #   run: |
+    #     kubectl apply -f k8s/
+    #     kubectl set image deployment/task-api task-api=${{ secrets.DOCKER_USERNAME }}/task-api:${{ github.sha }}
 
-    #   - name: Deploy Worker
-    #     run: |
-    #       kubectl set image deployment/task-worker task-worker=${{ secrets.DOCKER_USERNAME }}/task-worker:${{ github.sha }}
+    # - name: Deploy Worker
+    #   run: |
+    #     kubectl set image deployment/task-worker task-worker=${{ secrets.DOCKER_USERNAME }}/task-worker:${{ github.sha }}

@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: task-api
-        image: task-api:2.0
+        image: neerajs231/task-api:latest
         imagePullPolicy: Never
 
         env:

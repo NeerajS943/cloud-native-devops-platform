@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: task-worker
-        image: task-worker:2.0
+        image: neerajs231/task-worker:latest
         imagePullPolicy: Never
         resources:
           requests:
