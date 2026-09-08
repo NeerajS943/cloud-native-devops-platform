@@ -1,0 +1,12 @@
+| Day    | Focus                                                      |
+| ------ | ---------------------------------------------------------- |
+| Day 1  | Kubernetes Cluster Setup (kind) ✅                          |
+| Day 2  | Python App + Queue + Worker ✅                              |
+| Day 3  | Containerization with Docker                               |
+| Day 4  | Deploy Application to Kubernetes                           |
+| Day 5  | Production Kubernetes Features (Probes, Scaling, Policies) |
+| Day 6  | CI/CD with GitHub Actions                                  |
+| Day 7  | Logging & Monitoring (Prometheus / Grafana / Grafana Loki) |
+| Day 8  | Distributed Tracing with OpenTelemetry                     |
+| Day 9  | GitOps with Argo CD                                        |
+| Day 10 | Documentation, Portfolio Polish & Final Enhancements       |
