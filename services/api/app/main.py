@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from uuid import uuid4
 import redis
@@ -6,8 +7,8 @@ import json
 app = FastAPI(title="Cloud Native Task Platform")
 
 r = redis.Redis(
-    host="redis",
-    port=6379,
+    host = os.getenv("REDIS_HOST", "localhost"),
+    port = int(os.getenv("REDIS_PORT", 6379)),
     decode_responses=True
 )
 

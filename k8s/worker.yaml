@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: task-worker
+  namespace: task-platform
 
 spec:
   replicas: 1
@@ -18,5 +19,29 @@ spec:
     spec:
       containers:
       - name: task-worker
-        image: task-worker:1.0
-        imagePullPolicy: Never
+        image: neerajs231/task-worker:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
+        env:
+        - name: REDIS_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: task-config
+              key: REDIS_HOST
+
+        - name: REDIS_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: task-config
+              key: REDIS_PORT
+  strategy:
+    type: RollingUpdate 
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
